@@ -1,0 +1,86 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Ensaio Regional</ion-title>
+
+    <ion-buttons end *ngIf="hasPermissionToEdit">
+      <button ion-button color="danger" (click)="onClickDeleteRehearsal()">Excluir</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-bottom>
+
+  <ion-list *ngIf="rehearsal !== undefined" no-lines>
+
+    <ion-item *ngIf="rehearsal.done">
+      <button ion-button outline item-middle>Este ensaio já foi realizado</button>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Cidade</h3>
+      <p>{{ rehearsal.city }}</p>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Igreja</h3>
+      <p>{{ rehearsal.church || '-' }}</p>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Data</h3>
+      <p>{{ rehearsal.formattedDate }}</p>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Horário</h3>
+      <p>{{ rehearsal.time }}</p>
+    </ion-item>
+
+    <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.responsible ? rehearsal.responsible.objectId : null)">
+      <h3>Atendimento</h3>
+      <p>{{ rehearsal.responsible ? rehearsal.responsible.name : '-' }}</p>
+      <span class="icon-msg" *ngIf="rehearsal.responsible" item-end>Clique para detalhes</span>
+      <ion-icon name="arrow-forward" *ngIf="rehearsal.responsible" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.objectId : null)">
+      <h3>Encarregado Regional 1</h3>
+      <p>{{ rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.name : '-' }}</p>
+      <span class="icon-msg" *ngIf="rehearsal.musicalResponsible1" item-end>Clique para detalhes</span>
+      <ion-icon name="arrow-forward" *ngIf="rehearsal.musicalResponsible1" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible2 ? rehearsal.musicalResponsible2.objectId : null)">
+      <h3>Encarregado Regional 2</h3>
+      <p>{{ rehearsal.musicalResponsible2 ? rehearsal.musicalResponsible2.name : '-' }}</p>
+      <span class="icon-msg" *ngIf="rehearsal.musicalResponsible2" item-end>Clique para detalhes</span>
+      <ion-icon name="arrow-forward" *ngIf="rehearsal.musicalResponsible2" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Observação</h3>
+      <p>{{ rehearsal.observation || '-' }}</p>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="hasPermissionToEdit">
+
+  <ion-toolbar>
+
+    <ion-buttons text-center>
+      <button ion-button color="dark" (click)="openEditRehearsal()">
+        Editar Ensaio
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-footer>

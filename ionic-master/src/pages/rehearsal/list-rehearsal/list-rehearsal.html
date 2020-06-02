@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Ensaios Regionais</ion-title>
+
+    <ion-buttons end *ngIf="hasPermissionToEdit">
+      <button ion-button color="secondary" (click)="addRehearsal()">Criar novo</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+  <ion-searchbar (ionInput)="onChangeSearchbar($event)" debounce="800" placeholder="Buscar por cidade ou igreja" animated="true"></ion-searchbar>
+
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+
+      <ion-item text-center *ngIf="rehearsals !== undefined && isEmpty(rehearsals)">
+        <p><i>Nenhum ensaio regional encontrado</i></p>
+      </ion-item>
+
+      <ion-item text-wrap *ngFor="let rehearsal of rehearsals" (click)="viewRehearsal(rehearsal)">
+        <h2>{{ rehearsal.city }}</h2>
+        <h3 *ngIf="rehearsal.church">{{ rehearsal.church }}</h3>
+        <h3>{{ rehearsal.date }} às {{ rehearsal.time }}H</h3>
+        <button *ngIf="rehearsal.done" ion-button clear item-end>Realizado</button>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" top="25%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-toolbar>
+
+    <ion-buttons text-center>
+      <button ion-button color="dark" (click)="onClickToggleFilter()">
+        {{ showAll ? 'Ocultar ensaios realizados' : 'Mostrar ensaios realizados' }}
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-footer>

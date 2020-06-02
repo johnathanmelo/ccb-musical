@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Nova Permissão</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="saveNewPermission()">Salvar</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-vertical>
+
+  <ion-item>
+
+    <ion-label>E-mail</ion-label>
+
+    <ion-input type="email" [(ngModel)]="registeredEmail.email"></ion-input>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>Permissão de Edição</ion-label>
+
+    <ion-checkbox [(ngModel)]="registeredEmail.permissionToEdit"></ion-checkbox>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>Permissão de Administrador</ion-label>
+
+    <ion-checkbox [(ngModel)]="registeredEmail.isAdmin"></ion-checkbox>
+
+  </ion-item>
+
+</ion-content>

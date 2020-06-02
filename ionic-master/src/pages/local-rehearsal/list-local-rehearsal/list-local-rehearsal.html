@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Ensaios Locais</ion-title>
+
+    <ion-buttons end *ngIf="hasPermissionToEdit">
+      <button ion-button color="secondary" (click)="addLocalRehearsal()">Criar novo</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+  <ion-searchbar (ionInput)="onChangeSearchbar($event)" debounce="800" placeholder="Buscar por cidade ou igreja" animated="true"></ion-searchbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item text-center *ngIf="localRehearsals !== undefined && isEmpty(localRehearsals)">
+      <p><i>Nenhum ensaio local encontrado</i></p>
+    </ion-item>
+
+    <ion-item text-wrap *ngFor="let localRehearsal of localRehearsals" (click)="viewLocalRehearsal(localRehearsal)">
+      <h2>{{ localRehearsal.city }}</h2>
+      <h3 *ngIf="localRehearsal.church">{{ localRehearsal.church }}</h3>
+      <h3>{{ localRehearsal.frequency }}</h3>
+      <h3>{{ localRehearsal.time }}H</h3>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" top="25%">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

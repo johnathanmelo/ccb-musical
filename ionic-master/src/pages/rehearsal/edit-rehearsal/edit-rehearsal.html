@@ -1,0 +1,107 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Editar Ensaio Regional</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="secondary" (click)="onClickEditRehearsal()">Salvar</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-vertical>
+
+  <ion-list *ngIf="rehearsal !== undefined">
+
+    <ion-item>
+
+      <ion-label>Cidade</ion-label>
+
+      <ion-input type="text" [(ngModel)]="rehearsal.city"></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Igreja</ion-label>
+
+      <ion-input type="text" [(ngModel)]="rehearsal.church" placeholder="Exemplo: Central"></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Data</ion-label>
+
+      <ion-datetime
+        displayFormat="DD/MM/YYYY (DDDD)"
+        pickerFormat="DD MMMM YYYY"
+        [(ngModel)]="rehearsal.date"
+        [min]="minDate"
+        [max]="maxDate"
+        doneText="OK"
+        cancelText="Cancelar"
+      ></ion-datetime>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Horário</ion-label>
+
+      <ion-datetime
+        displayFormat="HH:mm"
+        pickerFormat="HH mm"
+        minuteValues="0,10,20,30,40,50"
+        [(ngModel)]="rehearsal.time"
+        doneText="OK"
+        cancelText="Cancelar"
+      ></ion-datetime>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Atendimento</ion-label>
+
+      <ion-select [(ngModel)]="rehearsal.responsible" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let anciaoContact of anciaoContacts" [value]="anciaoContact">{{anciaoContact.name}} ({{anciaoContact.city}})</ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Encarregado Regional 1</ion-label>
+
+      <ion-select [(ngModel)]="rehearsal.musicalResponsible1" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let encarregadoRegContact of encarregadoRegContacts" [value]="encarregadoRegContact">{{encarregadoRegContact.name}} ({{encarregadoRegContact.city}})</ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Encarregado Regional 2</ion-label>
+
+      <ion-select [(ngModel)]="rehearsal.musicalResponsible2" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let encarregadoRegContact of encarregadoRegContacts" [value]="encarregadoRegContact">{{encarregadoRegContact.name}} ({{encarregadoRegContact.city}})</ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Observação</ion-label>
+
+      <ion-input type="text" [(ngModel)]="rehearsal.observation"></ion-input>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

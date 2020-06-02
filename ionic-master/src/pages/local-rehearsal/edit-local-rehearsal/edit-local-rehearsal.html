@@ -1,0 +1,121 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Editar Ensaio Local</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="secondary" (click)="onClickEditLocalRehearsal()">Salvar</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-vertical>
+
+  <ion-list *ngIf="localRehearsal !== undefined">
+
+    <ion-item>
+
+      <ion-label>Cidade</ion-label>
+
+      <ion-input type="text" [(ngModel)]="localRehearsal.city"></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Igreja</ion-label>
+
+      <ion-input type="text" [(ngModel)]="localRehearsal.church" placeholder="Exemplo: Central"></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Frequência mensal</ion-label>
+
+      <ion-select [(ngModel)]="localRehearsal.monthlyFrequency" (ionChange)="onChangeMonthlyFrequency()" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let monthlyFrequency of monthlyFrequencies" [value]="monthlyFrequency">
+          {{monthlyFrequency.value}}
+        </ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item *ngIf="localRehearsal.monthlyFrequency && localRehearsal.monthlyFrequency.objectId === 'SPECIFIC'">
+
+      <ion-label>Meses específicos</ion-label>
+
+      <ion-select [(ngModel)]="localRehearsal.specificMonths" multiple="true" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let month of months" [value]="month">
+          {{month.value}}
+        </ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item *ngIf="localRehearsal.monthlyFrequency && localRehearsal.monthlyFrequency.objectId !== 'NONE'">
+
+      <ion-label>Dia da semana</ion-label>
+
+      <ion-select [(ngModel)]="localRehearsal.weekDay" (ionChange)="onChangeWeekDay()" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let weekDay of weekDays" [value]="weekDay">
+          {{weekDay.value}}
+        </ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item *ngIf="localRehearsal.monthlyFrequency && localRehearsal.monthlyFrequency.objectId !== 'NONE'">
+
+      <ion-label>Semana</ion-label>
+
+      <ion-select [(ngModel)]="localRehearsal.weekOrder" [disabled]="!localRehearsal.weekDay" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let weekOrder of weekOrders" [value]="weekOrder">
+          {{weekOrder.value}}
+        </ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item *ngIf="localRehearsal.monthlyFrequency && localRehearsal.monthlyFrequency.objectId === 'NONE'">
+
+      <ion-label>Datas</ion-label>
+  
+      <ion-textarea type="text" rows="3" [(ngModel)]="localRehearsal.observation"></ion-textarea>
+  
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Horário</ion-label>
+
+      <ion-datetime
+        displayFormat="HH:mm"
+        pickerFormat="HH mm"
+        minuteValues="0,10,20,30,40,50"
+        [(ngModel)]="localRehearsal.time"
+        doneText="OK"
+        cancelText="Cancelar"
+      ></ion-datetime>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label>Encarregado Local Responsável</ion-label>
+
+      <ion-select [(ngModel)]="localRehearsal.responsible" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let encarregadoLocalContact of encarregadoLocalContacts" [value]="encarregadoLocalContact">
+          {{encarregadoLocalContact.name}}
+        </ion-option>
+      </ion-select>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

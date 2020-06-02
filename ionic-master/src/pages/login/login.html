@@ -1,0 +1,75 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>CCB Musical</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+  <ion-row>
+    <ion-col col-11>
+      <ion-item>
+        <ion-label stacked>E-mail</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-11>
+      <ion-item>
+        <ion-label stacked>Senha</ion-label>
+        <ion-input type="password" [(ngModel)]="password" *ngIf="!isPasswordVisible"></ion-input>
+        <ion-input type="text" [(ngModel)]="password" *ngIf="isPasswordVisible"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1 class="password-icon"> 
+        <ion-icon name="eye" *ngIf="!isPasswordVisible" (click)="isPasswordVisible = true"></ion-icon> 
+        <ion-icon name="eye-off" *ngIf="isPasswordVisible" (click)="isPasswordVisible = false"></ion-icon>
+    </ion-col>
+  </ion-row>   
+
+  <ion-row>
+    <ion-col col-11>
+      <ion-item>
+        <ion-label stacked>Repita a senha</ion-label>
+        <ion-input type="password" [(ngModel)]="passwordValidation" *ngIf="!isPasswordVisible"></ion-input>
+        <ion-input type="text" [(ngModel)]="passwordValidation" *ngIf="isPasswordVisible"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <div text-center margin-top>
+    <button ion-button margin-right (click)="onClickSignUp()">
+      CRIAR UMA CONTA
+    </button>
+
+    <button ion-button color="secondary" (click)="signIn()">
+      ENTRAR
+    </button>
+  </div>
+
+  <div text-center margin-top>
+    <button ion-button clear color="dark" (click)="onClickForgotPassword()">
+      Esqueceu a senha?
+    </button>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-toolbar (click)="redirectToYoutube()">
+
+    <ion-buttons text-center>
+      <button ion-button color="dark">
+        Ajuda&nbsp;<ion-icon name="help-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-footer>

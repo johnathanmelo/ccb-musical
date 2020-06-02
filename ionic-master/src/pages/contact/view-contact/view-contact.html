@@ -1,0 +1,76 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Contato</ion-title>
+
+    <ion-buttons end *ngIf="hasPermissionToEdit">
+      <button ion-button color="danger" (click)="onClickDeleteContact()">Excluir</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-bottom>
+
+  <ion-list *ngIf="contact !== undefined" no-lines>
+
+    <ion-item text-wrap>
+      <h3>Nome</h3>
+      <p>{{ contact.name }}</p>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Cargo</h3>
+      <p>{{ contact.function.name }}</p>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Cidade</h3>
+      <p>{{ contact.city }}</p>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <h3>Comum</h3>
+      <p>{{ contact.church || '-' }}</p>
+    </ion-item>
+
+    <ion-item text-wrap (click)="redirectToWhatsapp(contact.phone1)">
+      <h3>Telefone 1</h3>
+      <p>{{ contact.phoneFormatted1 || '-' }}</p>
+      <span class="icon-msg" *ngIf="contact.phone1 && contact.phone1.length === 11" item-end>Clique para falar</span>
+      <ion-icon name="logo-whatsapp" *ngIf="contact.phone1 && contact.phone1.length === 11" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap (click)="redirectToWhatsapp(contact.phone2)">
+      <h3>Telefone 2</h3>
+      <p>{{ contact.phoneFormatted2 || '-' }}</p>
+      <span class="icon-msg" *ngIf="contact.phone2 && contact.phone2.length === 11" item-end>Clique para falar</span>
+      <ion-icon name="logo-whatsapp" *ngIf="contact.phone2 && contact.phone2.length === 11" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap (click)="copyToClipboard(contact.email)">
+      <h3>E-mail</h3>
+      <p>{{ contact.email || '-' }}</p>
+      <ion-icon name="copy" *ngIf="contact.email" item-end></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="hasPermissionToEdit">
+
+  <ion-toolbar>
+
+    <ion-buttons text-center>
+      <button ion-button color="dark" (click)="openEditContact()">
+        Editar Contato
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-footer>

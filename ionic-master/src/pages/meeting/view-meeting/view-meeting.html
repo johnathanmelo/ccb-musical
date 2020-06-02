@@ -1,0 +1,79 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Reunião</ion-title>
+
+    <ion-buttons end *ngIf="hasPermissionToEdit">
+      <button ion-button color="danger" (click)="onClickDeleteMeeting()">Excluir</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-vertical>
+
+  <ion-list *ngIf="meeting !== undefined" no-lines>
+
+    <ion-item *ngIf="meeting.done">
+      <button ion-button outline item-middle>Esta reunião já foi realizada</button>
+    </ion-item>
+
+    <ion-item (click)="onClickViewMeetingType()">
+      <h3>Tipo de Reunião</h3>
+      <p>{{ meeting.type.summary }}</p>
+      <p>{{ meeting.type.name }}</p>
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="meeting.regional">
+      <h3>Regional de Referência</h3>
+      <p>{{ meeting.regional.name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <h3>Local da Reunião</h3>
+      <p>{{ meeting.place.name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <h3>Data</h3>
+      <p>{{ meeting.formattedDate }}</p>
+    </ion-item>
+
+    <ion-item>
+      <h3>Horário</h3>
+      <p>{{ meeting.time }}</p>
+    </ion-item>
+
+    <ion-item (click)="onClickViewMeetingResponsible()">
+      <h3>Atendimento</h3>
+      <p>{{ meeting.responsible.name }}</p>
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <h3>Observação</h3>
+      <p>{{ meeting.observation || '-' }}</p>
+    </ion-item>
+
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="hasPermissionToEdit">
+
+  <ion-toolbar>
+
+    <ion-buttons text-center>
+      <button ion-button color="dark" (click)="openEditMeeting()">
+        Editar Reunião
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-footer>

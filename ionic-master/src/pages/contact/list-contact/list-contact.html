@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title *ngIf="function !== undefined">{{ function.name }}</ion-title>
+
+  </ion-navbar>
+
+  <ion-searchbar (ionInput)="onChangeSearchbar($event)" debounce="800" placeholder="Buscar por nome ou cidade" animated="true">
+  </ion-searchbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list *ngIf="contacts !== undefined">
+
+    <ion-item text-center *ngIf="contacts !== undefined && isEmpty(contacts)">
+      <p><i>Nenhum contato encontrado</i></p>
+    </ion-item>
+
+    <ion-item text-wrap *ngFor="let contact of contacts" (click)="viewContact(contact)">
+      <h2>{{ contact.name }}</h2>
+      <h3 *ngIf="isChurchPresent(contact)">{{ contact.city }} - {{ contact.church }}</h3>
+      <h3 *ngIf="!isChurchPresent(contact)">{{ contact.city }}</h3>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" top="25%">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

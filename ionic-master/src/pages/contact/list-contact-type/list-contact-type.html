@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Contatos</ion-title>
+
+    <ion-buttons end *ngIf="hasPermissionToEdit">
+      <button ion-button color="secondary" (click)="addContact()">Criar novo</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list *ngIf="functions !== undefined">
+
+    <ion-item *ngFor="let function of functions" padding-bottom (click)="openListContactPage(function)">
+      {{ function.name }}
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tipos de Reunião</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-vertical>
+
+  <ion-list>
+    <ion-item *ngFor="let meetingType of meetingTypes" (click)="viewMeetingType(meetingType)">
+      <h2>{{ meetingType.name }}</h2>
+      <p>{{ meetingType.summary }}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

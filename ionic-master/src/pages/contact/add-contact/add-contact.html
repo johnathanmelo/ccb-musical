@@ -1,0 +1,76 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>Novo Contato</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="saveNewContact()">Salvar</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-vertical>
+
+  <ion-item>
+
+    <ion-label>Nome</ion-label>
+
+    <ion-input type="text" [(ngModel)]="contact.name"></ion-input>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>Cargo</ion-label>
+
+    <ion-select [(ngModel)]="contact.function" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
+      <ion-option *ngFor="let function of functions" [value]="function">{{function.name}}</ion-option>
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>Cidade</ion-label>
+
+    <ion-input type="text" [(ngModel)]="contact.city"></ion-input>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>Comum</ion-label>
+
+    <ion-input type="text" [(ngModel)]="contact.church"></ion-input>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>Telefone 1</ion-label>
+
+    <ion-input type="tel" [brmasker]="{phone: true}" [(ngModel)]="contact.phone1"></ion-input>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>Telefone 2</ion-label>
+
+    <ion-input type="tel" [brmasker]="{phone: true}" [(ngModel)]="contact.phone2"></ion-input>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label>E-mail</ion-label>
+
+    <ion-input type="email" [(ngModel)]="contact.email"></ion-input>
+
+  </ion-item>
+
+</ion-content>

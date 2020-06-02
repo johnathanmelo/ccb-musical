@@ -1,0 +1,7 @@
+{
+  "name": "back4app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
