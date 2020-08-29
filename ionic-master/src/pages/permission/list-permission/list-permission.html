@@ -1,12 +1,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>list-permission</ion-title>
+
+    <ion-title>Gerenciar Permissões</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="secondary" (click)="addPermission()">Criar nova</button>
+    </ion-buttons>
+
   </ion-navbar>
+
+  <ion-searchbar (ionInput)="onChangeSearchbar($event)" debounce="800" placeholder="Buscar por e-mail" animated="true"></ion-searchbar>
 
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+    <ion-list>
+
+      <ion-item text-center *ngIf="registeredEmails !== undefined && isEmpty(registeredEmails)">
+        <p><i>Nenhuma permissão encontrada</i></p>
+      </ion-item>
+
+      <ion-item text-wrap *ngFor="let registeredEmail of registeredEmails" (click)="editPermission(registeredEmail)">
+        <h2>{{ registeredEmail.email }}</h2>
+        <h3 class="editor" *ngIf="registeredEmail.permissionToEdit">Permissão para editar</h3>
+        <button *ngIf="registeredEmail.isAdmin" ion-button clear item-end>Administrador</button>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" top="25%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 </ion-content>

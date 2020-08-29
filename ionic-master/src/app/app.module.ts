@@ -36,7 +36,6 @@ import { ViewMeetingTypePage } from '../pages/meeting-type/view-meeting-type/vie
 
 import { ListPermissionPage } from '../pages/permission/list-permission/list-permission';
 import { AddPermissionPage } from '../pages/permission/add-permission/add-permission';
-import { ViewPermissionPage } from '../pages/permission/view-permission/view-permission';
 import { EditPermissionPage } from '../pages/permission/edit-permission/edit-permission';
 
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
@@ -66,7 +65,6 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     EditLocalRehearsalPage,
     ListPermissionPage,
     AddPermissionPage,
-    ViewPermissionPage,
     EditPermissionPage,
     ResetPasswordPage,
   ],
@@ -104,7 +102,6 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     EditLocalRehearsalPage,
     ListPermissionPage,
     AddPermissionPage,
-    ViewPermissionPage,
     EditPermissionPage,
     ResetPasswordPage,
   ],

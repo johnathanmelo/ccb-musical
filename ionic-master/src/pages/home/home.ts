@@ -5,7 +5,7 @@ import { ListTopicPage } from '../topic/list-topic/list-topic';
 import { ListRehearsalPage } from '../rehearsal/list-rehearsal/list-rehearsal';
 import { ListLocalRehearsalPage } from '../local-rehearsal/list-local-rehearsal/list-local-rehearsal'
 import { ListContactTypePage } from '../contact/list-contact-type/list-contact-type';
-import { AddPermissionPage } from '../permission/add-permission/add-permission';
+import { ListPermissionPage } from '../permission/list-permission/list-permission';
 import Parse from 'parse';
 
 @IonicPage()
@@ -46,8 +46,8 @@ export class HomePage {
     this.navCtrl.push(ListTopicPage);
   }
 
-  openAddPermissionPage() {
-    this.navCtrl.push(AddPermissionPage);
+  openListPermissionPage() {
+    this.navCtrl.push(ListPermissionPage);
   }
 
   onClickLogOut() {

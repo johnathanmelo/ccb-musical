@@ -35,7 +35,7 @@ export class AddPermissionPage {
     myNewObject.save().then(
       () => {
         this.loading.dismiss();
-        this.presentToast('A permissão foi criada com sucesso.');
+        this.presentToast('A permissão foi criada com sucesso');
         this.navCtrl.pop();
       },
       (err) => {
@@ -54,7 +54,7 @@ export class AddPermissionPage {
 
   areFieldsInvalid() {
     if (this.registeredEmail['email'] === undefined || !this.registeredEmail['email'].replace(/\s/g, '').length) {
-      this.presentToast('O email deve ser informado.');
+      this.presentToast('O e-mail deve ser informado.');
       return true;
     }
 

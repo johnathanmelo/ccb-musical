@@ -1,12 +1,56 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>edit-permission</ion-title>
+
+    <ion-title>Editar Permissão</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="onClickEditPermission()">Salvar</button>
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding-vertical>
+
+  <ion-item *ngIf="registeredEmail !== undefined">
+
+    <ion-label>E-mail</ion-label>
+
+    <ion-input type="email" disabled [(ngModel)]="registeredEmail.email"></ion-input>
+
+  </ion-item>
+
+  <ion-item *ngIf="registeredEmail !== undefined">
+
+    <ion-label>Permissão de Edição</ion-label>
+
+    <ion-checkbox [(ngModel)]="registeredEmail.permissionToEdit"></ion-checkbox>
+
+  </ion-item>
+
+  <ion-item *ngIf="registeredEmail !== undefined">
+
+    <ion-label>Permissão de Administrador</ion-label>
+
+    <ion-checkbox [(ngModel)]="registeredEmail.isAdmin" [disabled]="isMyPermission"></ion-checkbox>
+
+  </ion-item>
 
 </ion-content>
+
+<ion-footer>
+
+  <ion-toolbar>
+
+    <ion-buttons text-center>
+      <button ion-button color="danger" (click)="onClickDeleteContact()">
+        Excluir permissão
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-footer>
