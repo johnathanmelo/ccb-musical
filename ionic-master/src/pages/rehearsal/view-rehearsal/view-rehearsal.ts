@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { ViewContactPage } from '../../contact/view-contact/view-contact';
 import { EditRehearsalPage } from '../../rehearsal/edit-rehearsal/edit-rehearsal';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 import * as moment from 'moment';
 import * as _ from "lodash";
 import Parse from 'parse';
-import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-view-rehearsal',

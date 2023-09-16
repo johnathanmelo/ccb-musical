@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { ViewContactPage } from '../../contact/view-contact/view-contact';
 import { EditLocalRehearsalPage } from '../../local-rehearsal/edit-local-rehearsal/edit-local-rehearsal';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 import * as _ from "lodash";
 import Parse from 'parse';
-import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-view-local-rehearsal',

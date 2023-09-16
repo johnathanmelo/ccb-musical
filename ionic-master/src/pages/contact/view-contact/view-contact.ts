@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { EditContactPage } from '../edit-contact/edit-contact';
 import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 import * as _ from "lodash";
 import Parse from 'parse';
-import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-view-contact',
