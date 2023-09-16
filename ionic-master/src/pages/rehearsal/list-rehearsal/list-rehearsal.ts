@@ -16,7 +16,7 @@ export class ListRehearsalPage {
   textFilter: string = '';
   rehearsals: Object[];
   hasPermissionToEdit: boolean = false;
-  showAll: boolean = false;
+  showNext: boolean = true;
   loading: any;
   reActiveInfinite: any;
 
@@ -63,36 +63,37 @@ export class ListRehearsalPage {
   }
 
   getDateQuery(Rehearsal: Object) {
-    const minDate = new Date(moment().format());
+    const today = new Date(moment().format());
+    const dateQuery = new Parse.Query(Rehearsal);
 
-    const minDateQuery = new Parse.Query(Rehearsal);
-    minDateQuery.greaterThanOrEqualTo("dateTime", minDate);
+    if (this.showNext) {
+      dateQuery.greaterThanOrEqualTo("dateTime", today);
+    } else {
+      dateQuery.lessThan("dateTime", today);
+    }
 
-    return minDateQuery;
+    return dateQuery;
   }
 
   fetchRehearsals(infiniteScroll?: any) {
     if (!infiniteScroll) this.presentLoading();
     const Rehearsal = Parse.Object.extend("Rehearsal");
 
-    const dateQuery = !this.showAll
-      ? this.getDateQuery(Rehearsal)
-      : new Parse.Query(Rehearsal);
+    const dateQuery = this.getDateQuery(Rehearsal);
 
-    const textQuery = (this.textFilter && this.textFilter.trim() != '')
+    const textQuery = (this.textFilter && this.textFilter.trim() !== '')
       ? this.getTextQuery(Rehearsal)
       : new Parse.Query(Rehearsal);
 
     const query = Parse.Query.and(dateQuery, textQuery);
 
-    if (this.showAll) {
-      query.descending("dateTime");
-    } else {
+    if (this.showNext) {
       query.ascending("dateTime");
+    } else {
+      query.descending("dateTime");
     }
 
     query.addAscending("id");
-
     query.limit(12);
     query.skip(this.rehearsals.length);
 
@@ -128,7 +129,7 @@ export class ListRehearsalPage {
     this.rehearsals = [];
     this.enableInfiniteScroll();
 
-    this.showAll = !this.showAll;
+    this.showNext = !this.showNext;
     this.fetchRehearsals();
   }
 
