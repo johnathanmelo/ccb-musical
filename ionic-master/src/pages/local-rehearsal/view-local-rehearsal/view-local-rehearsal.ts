@@ -12,7 +12,7 @@ import Parse from 'parse';
 export class ViewLocalRehearsalPage {
   loading: any;
   localRehearsal: Object;
-  hasPermissionToEdit: Boolean = false;
+  hasPermissionToEdit: boolean = false;
 
   constructor(
     public navCtrl: NavController,

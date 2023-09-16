@@ -13,8 +13,8 @@ import Parse from 'parse';
 export class ListRehearsalPage {
   textFilter: string = '';
   rehearsals: Object[];
-  hasPermissionToEdit: Boolean = false;
-  showAll: Boolean = false;
+  hasPermissionToEdit: boolean = false;
+  showAll: boolean = false;
   loading: any;
   reActiveInfinite: any;
 

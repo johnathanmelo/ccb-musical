@@ -13,7 +13,7 @@ import Parse from 'parse';
 export class ViewContactPage {
   loading: any;
   contact: Object;
-  hasPermissionToEdit: Boolean = false;
+  hasPermissionToEdit: boolean = false;
 
   constructor(
     public navCtrl: NavController,

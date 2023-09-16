@@ -16,9 +16,9 @@ export class ListContactPage {
   reActiveInfinite: any;
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
-    public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
   ) {
   }
 

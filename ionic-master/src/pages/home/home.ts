@@ -93,4 +93,5 @@ export class HomePage {
     this.isLogged = this.authUserProvider.isLogged();
     this.isAdmin = await this.authUserProvider.isAdminAsync();
   }
+
 }

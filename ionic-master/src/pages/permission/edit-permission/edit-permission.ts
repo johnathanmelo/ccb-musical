@@ -9,7 +9,7 @@ import Parse from 'parse';
 export class EditPermissionPage {
   registeredEmail: Object;
   loading: any;
-  isMyPermission: Boolean = false;
+  isMyPermission: boolean = false;
 
   constructor(
     public navCtrl: NavController,

@@ -2,21 +2,22 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ListContactPage } from '../list-contact/list-contact';
 import { AddContactPage } from '../add-contact/add-contact';
-import Parse from 'parse';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-list-contact-type',
   templateUrl: 'list-contact-type.html',
+  providers: [AuthUserProvider],
 })
 export class ListContactTypePage {
   loading: any;
   functions: Object[];
-  hasPermissionToEdit: Boolean = false;
+  hasPermissionToEdit: boolean = false;
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
-    public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private authUserProvider: AuthUserProvider,
   ) {
   }
 
@@ -48,36 +49,12 @@ export class ListContactTypePage {
         objectId: '32OWVYU7Ja',
         name: 'Encarregado Local',
       },
-      {
-        __type: 'Pointer',
-        className: 'Function',
-        objectId: 'uNRbyF380N',
-        name: 'Examinadora de Organista',
-      },
     ];
   }
 
-  presentLoading() {
-    this.loading = this.loadingCtrl.create();
-    this.loading.present();
-  }
-
-  checkUserPermission() {
-    this.presentLoading();
-
-    const RegisteredEmail = Parse.Object.extend('RegisteredEmail');
-    var query = new Parse.Query(RegisteredEmail);
-    query.equalTo('email', Parse.User.current().get("email"));
-
-    query.first().then(registeredUser => {
-      this.hasPermissionToEdit = registeredUser.get("permissionToEdit");
-      this.loading.dismiss();
-    });
-  }
-
-  ionViewWillEnter() {
-    this.checkUserPermission();
+  async ionViewWillEnter() {
     this.fetchFunctions();
+    this.hasPermissionToEdit = await this.authUserProvider.hasPermissionToEditAsync();
   }
 
 }

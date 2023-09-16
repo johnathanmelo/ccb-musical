@@ -12,7 +12,7 @@ import Parse from 'parse';
 export class ListLocalRehearsalPage {
   textFilter: string = '';
   localRehearsals: Object[];
-  hasPermissionToEdit: Boolean = false;
+  hasPermissionToEdit: boolean = false;
   loading: any;
   reActiveInfinite: any;
 

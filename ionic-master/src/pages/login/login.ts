@@ -13,7 +13,7 @@ export class LoginPage {
   password: string;
   passwordValidation: string;
   loading: any;
-  isPasswordVisible: Boolean = false;
+  isPasswordVisible: boolean = false;
 
   constructor(
     public navCtrl: NavController,

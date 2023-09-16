@@ -13,7 +13,7 @@ import Parse from 'parse';
 export class ViewRehearsalPage {
   loading: any;
   rehearsal: Object;
-  hasPermissionToEdit: Boolean = false;
+  hasPermissionToEdit: boolean = false;
 
   constructor(
     public navCtrl: NavController,
