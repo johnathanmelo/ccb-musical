@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController,NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
-import { ListMeetingPage } from '../meeting/list-meeting/list-meeting';
-import { ListTopicPage } from '../topic/list-topic/list-topic';
 import { ListRehearsalPage } from '../rehearsal/list-rehearsal/list-rehearsal';
 import { ListLocalRehearsalPage } from '../local-rehearsal/list-local-rehearsal/list-local-rehearsal'
 import { ListContactTypePage } from '../contact/list-contact-type/list-contact-type';
@@ -26,10 +24,6 @@ export class HomePage {
   ) {
   }
 
-  openListMeetingPage() {
-    this.navCtrl.push(ListMeetingPage);
-  }
-
   openListRehearsalPage() {
     this.navCtrl.push(ListRehearsalPage);
   }
@@ -40,10 +34,6 @@ export class HomePage {
 
   openListContactTypePage() {
     this.navCtrl.push(ListContactTypePage);
-  }
-
-  openListTopicPage() {
-    this.navCtrl.push(ListTopicPage);
   }
 
   openListPermissionPage() {

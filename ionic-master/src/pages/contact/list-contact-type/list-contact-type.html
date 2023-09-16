@@ -14,7 +14,7 @@
 
 <ion-content padding>
 
-  <ion-list *ngIf="functions !== undefined">
+  <ion-list *ngIf="functions">
 
     <ion-item *ngFor="let function of functions" padding-bottom (click)="openListContactPage(function)">
       {{ function.name }}

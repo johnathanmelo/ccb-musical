@@ -8,13 +8,6 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 
-import { ListMeetingPage } from '../pages/meeting/list-meeting/list-meeting';
-import { AddMeetingPage } from '../pages/meeting/add-meeting/add-meeting';
-import { ViewMeetingPage } from '../pages/meeting/view-meeting/view-meeting';
-import { EditMeetingPage } from '../pages/meeting/edit-meeting/edit-meeting';
-
-import { ListTopicPage } from '../pages/topic/list-topic/list-topic';
-
 import { ListRehearsalPage } from '../pages/rehearsal/list-rehearsal/list-rehearsal';
 import { AddRehearsalPage } from '../pages/rehearsal/add-rehearsal/add-rehearsal';
 import { ViewRehearsalPage } from '../pages/rehearsal/view-rehearsal/view-rehearsal';
@@ -31,9 +24,6 @@ import { AddContactPage } from '../pages/contact/add-contact/add-contact';
 import { ViewContactPage } from '../pages/contact/view-contact/view-contact';
 import { EditContactPage } from '../pages/contact/edit-contact/edit-contact';
 
-import { ListMeetingTypePage } from '../pages/meeting-type/list-meeting-type/list-meeting-type';
-import { ViewMeetingTypePage } from '../pages/meeting-type/view-meeting-type/view-meeting-type';
-
 import { ListPermissionPage } from '../pages/permission/list-permission/list-permission';
 import { AddPermissionPage } from '../pages/permission/add-permission/add-permission';
 import { EditPermissionPage } from '../pages/permission/edit-permission/edit-permission';
@@ -43,23 +33,16 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 @NgModule({
   declarations: [
     MyApp,
-    ListTopicPage,
     ListContactTypePage,
-    ListMeetingTypePage,
-    ListMeetingPage,
     ListContactPage,
     ListRehearsalPage,
     ListLocalRehearsalPage,
-    AddMeetingPage,
     AddContactPage,
     AddRehearsalPage,
     AddLocalRehearsalPage,
-    ViewMeetingTypePage,
-    ViewMeetingPage,
     ViewContactPage,
     ViewRehearsalPage,
     ViewLocalRehearsalPage,
-    EditMeetingPage,
     EditContactPage,
     EditRehearsalPage,
     EditLocalRehearsalPage,
@@ -80,23 +63,16 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ListTopicPage,
     ListContactTypePage,
-    ListMeetingTypePage,
-    ListMeetingPage,
     ListContactPage,
     ListRehearsalPage,
     ListLocalRehearsalPage,
-    AddMeetingPage,
     AddContactPage,
     AddRehearsalPage,
     AddLocalRehearsalPage,
-    ViewMeetingTypePage,
-    ViewMeetingPage,
     ViewContactPage,
     ViewRehearsalPage,
     ViewLocalRehearsalPage,
-    EditMeetingPage,
     EditContactPage,
     EditRehearsalPage,
     EditLocalRehearsalPage,

@@ -31,41 +31,29 @@ export class ListContactTypePage {
   fetchFunctions() {
     this.functions = [
       {
-        '__type': 'Pointer',
-        'className': 'Function',
-        'objectId': '6UnlzqFTt5',
-        name: 'Ancião'
+        __type: 'Pointer',
+        className: 'Function',
+        objectId: '6UnlzqFTt5',
+        name: 'Ancião',
       },
       {
-        '__type': 'Pointer',
-        'className': 'Function',
-        'objectId': 'hvVr3Dyvep',
-        name: 'Encarregado Regional'
+        __type: 'Pointer',
+        className: 'Function',
+        objectId: 'hvVr3Dyvep',
+        name: 'Encarregado Regional',
       },
       {
-        '__type': 'Pointer',
-        'className': 'Function',
-        'objectId': '32OWVYU7Ja',
-        name: 'Encarregado Local'
+        __type: 'Pointer',
+        className: 'Function',
+        objectId: '32OWVYU7Ja',
+        name: 'Encarregado Local',
       },
       {
-        '__type': 'Pointer',
-        'className': 'Function',
-        'objectId': '4Rlj8dDGSC',
-        name: 'Instrutor'
+        __type: 'Pointer',
+        className: 'Function',
+        objectId: 'uNRbyF380N',
+        name: 'Examinadora de Organista',
       },
-      {
-        '__type': 'Pointer',
-        'className': 'Function',
-        'objectId': 'uNRbyF380N',
-        name: 'Examinadora de Organista'
-      },
-      {
-        '__type': 'Pointer',
-        'className': 'Function',
-        'objectId': 'VduG6Uk3sx',
-        name: 'Instrutora de Organista'
-      }
     ];
   }
 
