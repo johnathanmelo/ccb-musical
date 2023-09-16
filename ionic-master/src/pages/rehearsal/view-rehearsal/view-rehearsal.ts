@@ -5,10 +5,12 @@ import { EditRehearsalPage } from '../../rehearsal/edit-rehearsal/edit-rehearsal
 import * as moment from 'moment';
 import * as _ from "lodash";
 import Parse from 'parse';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-view-rehearsal',
   templateUrl: 'view-rehearsal.html',
+  providers: [AuthUserProvider],
 })
 export class ViewRehearsalPage {
   loading: any;
@@ -16,11 +18,12 @@ export class ViewRehearsalPage {
   hasPermissionToEdit: boolean = false;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
-    public toastCtrl: ToastController,
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
+    private authUserProvider: AuthUserProvider,
   ) {
   }
 
@@ -99,20 +102,8 @@ export class ViewRehearsalPage {
     this.loading.present();
   }
 
-  checkUserPermission() {
-    const RegisteredEmail = Parse.Object.extend('RegisteredEmail');
-    var query = new Parse.Query(RegisteredEmail);
-    query.equalTo('email', Parse.User.current().get("email"));
-
-    query.first().then(registeredUser => {
-      this.hasPermissionToEdit = registeredUser.get("permissionToEdit");
-    });
-  }
-
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.presentLoading();
-
-    this.checkUserPermission();
 
     let rehearsalId = this.navParams.get('rehearsalId');
 
@@ -122,6 +113,8 @@ export class ViewRehearsalPage {
     query.include("city");
     query.include("church");
     query.include("responsible.name");
+    query.include("musicalResponsible1.name");
+    query.include("musicalResponsible2.name");
 
     query.get(rehearsalId).then((object) => {
       this.loading.dismiss();
@@ -142,6 +135,8 @@ export class ViewRehearsalPage {
       this.loading.dismiss();
       console.error('Erro ao buscar ensaio regional: ', error);
     });
+
+    this.hasPermissionToEdit = await this.authUserProvider.hasPermissionToEditAsync();
   }
 
 }

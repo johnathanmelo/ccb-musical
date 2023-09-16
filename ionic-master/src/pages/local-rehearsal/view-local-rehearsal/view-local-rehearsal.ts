@@ -4,10 +4,12 @@ import { ViewContactPage } from '../../contact/view-contact/view-contact';
 import { EditLocalRehearsalPage } from '../../local-rehearsal/edit-local-rehearsal/edit-local-rehearsal';
 import * as _ from "lodash";
 import Parse from 'parse';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-view-local-rehearsal',
   templateUrl: 'view-local-rehearsal.html',
+  providers: [AuthUserProvider],
 })
 export class ViewLocalRehearsalPage {
   loading: any;
@@ -20,6 +22,7 @@ export class ViewLocalRehearsalPage {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
+    private authUserProvider: AuthUserProvider,
   ) {
   }
 
@@ -98,16 +101,6 @@ export class ViewLocalRehearsalPage {
     this.loading.present();
   }
 
-  checkUserPermission() {
-    const RegisteredEmail = Parse.Object.extend('RegisteredEmail');
-    var query = new Parse.Query(RegisteredEmail);
-    query.equalTo('email', Parse.User.current().get("email"));
-
-    query.first().then(registeredUser => {
-      this.hasPermissionToEdit = registeredUser.get("permissionToEdit");
-    });
-  }
-
   getFrequency(localRehearsal) {
     var buildMonthlyFrequency = function () {
       var isMale = localRehearsal.get("weekDay") == 'Sábado' || localRehearsal.get("weekDay") == 'Domingo';
@@ -139,10 +132,8 @@ export class ViewLocalRehearsalPage {
       : localRehearsal.get("observation");
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.presentLoading();
-
-    this.checkUserPermission();
 
     let localRehearsalId = this.navParams.get('localRehearsalId');
 
@@ -169,6 +160,8 @@ export class ViewLocalRehearsalPage {
       this.loading.dismiss();
       console.error('Erro ao buscar ensaio local: ', error);
     });
+
+    this.hasPermissionToEdit = await this.authUserProvider.hasPermissionToEditAsync();
   }
 
 }

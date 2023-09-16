@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { AddRehearsalPage } from '../add-rehearsal/add-rehearsal';
 import { ViewRehearsalPage } from '../view-rehearsal/view-rehearsal';
 import * as moment from 'moment';
 import * as _ from "lodash";
 import Parse from 'parse';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-list-rehearsal',
   templateUrl: 'list-rehearsal.html',
+  providers: [AuthUserProvider],
 })
 export class ListRehearsalPage {
   textFilter: string = '';
@@ -19,9 +21,9 @@ export class ListRehearsalPage {
   reActiveInfinite: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private authUserProvider: AuthUserProvider,
   ) {
   }
 
@@ -82,7 +84,13 @@ export class ListRehearsalPage {
       : new Parse.Query(Rehearsal);
 
     const query = Parse.Query.and(dateQuery, textQuery);
-    query.ascending("dateTime");
+
+    if (this.showAll) {
+      query.descending("dateTime");
+    } else {
+      query.ascending("dateTime");
+    }
+
     query.addAscending("id");
 
     query.limit(12);
@@ -137,22 +145,13 @@ export class ListRehearsalPage {
     return _.isEmpty(items);
   }
 
-  checkUserPermission() {
-    const RegisteredEmail = Parse.Object.extend('RegisteredEmail');
-    var query = new Parse.Query(RegisteredEmail);
-    query.equalTo('email', Parse.User.current().get("email"));
-
-    query.first().then(registeredUser => {
-      this.hasPermissionToEdit = registeredUser.get("permissionToEdit");
-    });
-  }
-
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.rehearsals = [];
 
     this.enableInfiniteScroll();
-    this.checkUserPermission();
     this.fetchRehearsals();
+
+    this.hasPermissionToEdit = await this.authUserProvider.hasPermissionToEditAsync();
   }
 
 }

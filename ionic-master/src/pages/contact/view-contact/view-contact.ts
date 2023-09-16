@@ -4,11 +4,12 @@ import { EditContactPage } from '../edit-contact/edit-contact';
 import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
 import * as _ from "lodash";
 import Parse from 'parse';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-view-contact',
   templateUrl: 'view-contact.html',
-  providers: [BrMaskerIonic3]
+  providers: [BrMaskerIonic3, AuthUserProvider],
 })
 export class ViewContactPage {
   loading: any;
@@ -21,7 +22,8 @@ export class ViewContactPage {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
-    private brMaskerIonic3: BrMaskerIonic3
+    private brMaskerIonic3: BrMaskerIonic3,
+    private authUserProvider: AuthUserProvider,
   ) {
   }
 
@@ -198,20 +200,8 @@ export class ViewContactPage {
     };
   }
 
-  checkUserPermission() {
-    const RegisteredEmail = Parse.Object.extend('RegisteredEmail');
-    var query = new Parse.Query(RegisteredEmail);
-    query.equalTo('email', Parse.User.current().get("email"));
-
-    query.first().then(registeredUser => {
-      this.hasPermissionToEdit = registeredUser.get("permissionToEdit");
-    });
-  }
-
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.presentLoading();
-
-    this.checkUserPermission();
 
     const config: BrMaskModel = new BrMaskModel();
     config.phone = true;
@@ -241,6 +231,8 @@ export class ViewContactPage {
       this.loading.dismiss();
       console.error('Erro ao buscar contato: ', error);
     });
+
+    this.hasPermissionToEdit = await this.authUserProvider.hasPermissionToEditAsync();
   }
 
 }

@@ -12,11 +12,11 @@ export class EditPermissionPage {
   isMyPermission: boolean = false;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public toastCtrl: ToastController,
-    public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController,
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
   ) {
   }
 

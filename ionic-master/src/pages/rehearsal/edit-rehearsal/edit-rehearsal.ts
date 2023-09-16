@@ -17,11 +17,11 @@ export class EditRehearsalPage {
   loading: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
-    public toastCtrl: ToastController
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
   ) {
   }
 
@@ -54,7 +54,7 @@ export class EditRehearsalPage {
     const Rehearsal = Parse.Object.extend('Rehearsal');
     const query = new Parse.Query(Rehearsal);
 
-    query.get(this.rehearsal['objectId']).then((object) => {
+    query.get(this.rehearsal['objectId']).then(object => {
 
       object.set('city', this.rehearsal['city']);
       object.set('church', this.rehearsal['church']);
@@ -123,24 +123,22 @@ export class EditRehearsalPage {
     const composedQuery = Parse.Query.or(anciaoQuery, encarregadoRegQuery);
     composedQuery.include("function.name");
 
-    return composedQuery.find().then((results) => {
-      var sortedResults = _.orderBy(results, (result) => {
+    return composedQuery.find().then(results => {
+      var sortedResults = _.orderBy(results, result => {
         return [result.get("function").get("name"), _.deburr(result.get("name"))];
       }, ['asc']);
 
-      var contacts = sortedResults.map((result) => {
-        return {
-          '__type': 'Pointer',
-          'className': 'Contact',
-          'objectId': result.id,
-          name: result.get("name"),
-          city: result.get("city"),
-          functionName: result.get("function").get("name")
-        };
-      });
+      var contacts = sortedResults.map(result => ({
+        '__type': 'Pointer',
+        'className': 'Contact',
+        'objectId': result.id,
+        name: result.get("name"),
+        city: result.get("city"),
+        functionName: result.get("function").get("name")
+      }));
 
-      this.anciaoContacts = _.filter(contacts , function (contact) { return contact['functionName'] === 'Ancião' });
-      this.encarregadoRegContacts = _.filter(contacts , function (contact) { return contact['functionName'] === 'Encarregado Regional' });
+      this.anciaoContacts = _.filter(contacts , contact => contact['functionName'] === 'Ancião');
+      this.encarregadoRegContacts = _.filter(contacts , contact => contact['functionName'] === 'Encarregado Regional');
     }, (error) => {
       console.error('Erro ao buscar contatos: ', error);
     });

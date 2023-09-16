@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import * as moment from 'moment';
 import * as _ from "lodash";
 import Parse from 'parse';
@@ -17,10 +17,9 @@ export class AddRehearsalPage {
   loading: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
   ) {
   }
 
@@ -101,24 +100,22 @@ export class AddRehearsalPage {
     const composedQuery = Parse.Query.or(anciaoQuery, encarregadoRegQuery);
     composedQuery.include("function.name");
 
-    return composedQuery.find().then((results) => {
-      var sortedResults = _.orderBy(results, (result) => {
+    return composedQuery.find().then(results => {
+      var sortedResults = _.orderBy(results, result => {
         return [result.get("function").get("name"), _.deburr(result.get("name"))];
       }, ['asc']);
 
-      var contacts = sortedResults.map((result) => {
-        return {
-          '__type': 'Pointer',
-          'className': 'Contact',
-          'objectId': result.id,
-          name: result.get("name"),
-          city: result.get("city"),
-          functionName: result.get("function").get("name")
-        };
-      });
+      var contacts = sortedResults.map(result => ({
+        '__type': 'Pointer',
+        'className': 'Contact',
+        'objectId': result.id,
+        name: result.get("name"),
+        city: result.get("city"),
+        functionName: result.get("function").get("name")
+      }));
 
-      this.anciaoContacts = _.filter(contacts , function (contact) { return contact['functionName'] === 'Ancião' });
-      this.encarregadoRegContacts = _.filter(contacts , function (contact) { return contact['functionName'] === 'Encarregado Regional' });
+      this.anciaoContacts = _.filter(contacts , contact => contact['functionName'] === 'Ancião');
+      this.encarregadoRegContacts = _.filter(contacts , contact => contact['functionName'] === 'Encarregado Regional');
     }, (error) => {
       console.error('Erro ao buscar contatos: ', error);
     });

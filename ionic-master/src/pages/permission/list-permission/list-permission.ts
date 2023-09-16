@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { EditPermissionPage } from '../edit-permission/edit-permission';
 import { AddPermissionPage } from '../add-permission/add-permission';
 import * as _ from "lodash";
@@ -16,9 +16,8 @@ export class ListPermissionPage {
   reActiveInfinite: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController
   ) {
   }
 

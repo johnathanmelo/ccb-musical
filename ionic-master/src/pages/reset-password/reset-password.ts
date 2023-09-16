@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import {
   NavController,
-  NavParams,
   ToastController,
   LoadingController
 } from "ionic-angular";
@@ -16,10 +15,9 @@ export class ResetPasswordPage {
   loading: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController
+    private navCtrl: NavController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController
   ) {}
 
   onClickResetPassword() {
