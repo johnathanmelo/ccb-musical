@@ -8,6 +8,8 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 
+import { LoginPage } from '../pages/login/login';
+
 import { ListRehearsalPage } from '../pages/rehearsal/list-rehearsal/list-rehearsal';
 import { AddRehearsalPage } from '../pages/rehearsal/add-rehearsal/add-rehearsal';
 import { ViewRehearsalPage } from '../pages/rehearsal/view-rehearsal/view-rehearsal';
@@ -35,6 +37,7 @@ import { AuthUserProvider } from '../providers/auth-user/auth-user-provider';
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
     ListContactTypePage,
     ListContactPage,
     ListRehearsalPage,
@@ -65,6 +68,7 @@ import { AuthUserProvider } from '../providers/auth-user/auth-user-provider';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     ListContactTypePage,
     ListContactPage,
     ListRehearsalPage,

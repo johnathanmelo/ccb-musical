@@ -4,6 +4,7 @@ import { ListRehearsalPage } from '../rehearsal/list-rehearsal/list-rehearsal';
 import { ListLocalRehearsalPage } from '../local-rehearsal/list-local-rehearsal/list-local-rehearsal'
 import { ListContactTypePage } from '../contact/list-contact-type/list-contact-type';
 import { ListPermissionPage } from '../permission/list-permission/list-permission';
+import { LoginPage } from '../login/login';
 import { AuthUserProvider } from '../../providers/auth-user/auth-user-provider';
 import Parse from 'parse';
 
@@ -46,7 +47,7 @@ export class HomePage {
   }
 
   onClickLogIn() {
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.push(LoginPage);
   }
 
   onClickLogOut() {

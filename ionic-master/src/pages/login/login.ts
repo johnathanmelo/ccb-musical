@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
+import { AlertController, NavController, ToastController, LoadingController } from 'ionic-angular';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import Parse from 'parse';
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
