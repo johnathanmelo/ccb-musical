@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { ListContactPage } from '../list-contact/list-contact';
 import { AddContactPage } from '../add-contact/add-contact';
 import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
@@ -15,7 +15,6 @@ export class ListContactTypePage {
   hasPermissionToEdit: boolean = false;
 
   constructor(
-    public navParams: NavParams,
     private navCtrl: NavController,
     private authUserProvider: AuthUserProvider,
   ) {

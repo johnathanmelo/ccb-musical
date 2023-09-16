@@ -16,12 +16,12 @@ export class ViewContactPage {
   hasPermissionToEdit: boolean = false;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
-    public toastCtrl: ToastController,
-    public brMaskerIonic3: BrMaskerIonic3
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
+    private brMaskerIonic3: BrMaskerIonic3
   ) {
   }
 

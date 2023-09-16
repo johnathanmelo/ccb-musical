@@ -15,11 +15,11 @@ export class ViewLocalRehearsalPage {
   hasPermissionToEdit: boolean = false;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
-    public toastCtrl: ToastController,
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
   ) {
   }
 

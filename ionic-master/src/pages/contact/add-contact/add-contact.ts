@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import * as _ from "lodash";
 import Parse from 'parse';
 
@@ -13,10 +13,9 @@ export class AddContactPage {
   loading: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
   ) {
   }
 

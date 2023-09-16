@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { AddLocalRehearsalPage } from '../add-local-rehearsal/add-local-rehearsal';
 import { ViewLocalRehearsalPage } from '../view-local-rehearsal/view-local-rehearsal';
 import * as _ from "lodash";
 import Parse from 'parse';
+import { AuthUserProvider } from '../../../providers/auth-user/auth-user-provider';
 
 @Component({
   selector: 'page-list-local-rehearsal',
   templateUrl: 'list-local-rehearsal.html',
+  providers: [AuthUserProvider],
 })
 export class ListLocalRehearsalPage {
   textFilter: string = '';
@@ -17,9 +19,9 @@ export class ListLocalRehearsalPage {
   reActiveInfinite: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private authUserProvider: AuthUserProvider,
   ) {
   }
 
@@ -144,22 +146,13 @@ export class ListLocalRehearsalPage {
     return _.isEmpty(items);
   }
 
-  checkUserPermission() {
-    const RegisteredEmail = Parse.Object.extend('RegisteredEmail');
-    var query = new Parse.Query(RegisteredEmail);
-    query.equalTo('email', Parse.User.current().get("email"));
-
-    query.first().then(registeredUser => {
-      this.hasPermissionToEdit = registeredUser.get("permissionToEdit");
-    });
-  }
-
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.localRehearsals = [];
 
     this.enableInfiniteScroll();
-    this.checkUserPermission();
     this.fetchLocalRehearsals();
+
+    this.hasPermissionToEdit = await this.authUserProvider.hasPermissionToEditAsync();
   }
 
 }
