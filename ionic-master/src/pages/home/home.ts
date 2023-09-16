@@ -1,26 +1,30 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { ListRehearsalPage } from '../rehearsal/list-rehearsal/list-rehearsal';
 import { ListLocalRehearsalPage } from '../local-rehearsal/list-local-rehearsal/list-local-rehearsal'
 import { ListContactTypePage } from '../contact/list-contact-type/list-contact-type';
 import { ListPermissionPage } from '../permission/list-permission/list-permission';
 import Parse from 'parse';
+import { AuthUserProvider } from '../../providers/auth-user/auth-user-provider';
 
 @IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [AuthUserProvider],
 })
 export class HomePage {
   loading: any;
-  isAdmin: Boolean = false;
+  isLogged: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
-    public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
+    private navCtrl: NavController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private authUserProvider: AuthUserProvider,
   ) {
   }
 
@@ -40,9 +44,13 @@ export class HomePage {
     this.navCtrl.push(ListPermissionPage);
   }
 
+  onClickLogIn() {
+    this.navCtrl.setRoot('LoginPage');
+  }
+
   onClickLogOut() {
     const confirm = this.alertCtrl.create({
-      title: 'Sair do aplicativo?',
+      title: 'Sair da área restrita?',
       buttons: [
         {
           text: 'Voltar',
@@ -62,11 +70,11 @@ export class HomePage {
   logOut() {
     this.presentLoading();
 
-    Parse.User.logOut().then((resp) => {
+    Parse.User.logOut().then(() => {
       this.loading.dismiss();
 
-      this.navCtrl.setRoot('LoginPage');
-    }, err => {
+      this.navCtrl.setRoot('HomePage');
+    }, () => {
       this.loading.dismiss();
 
       this.toastCtrl.create({
@@ -81,18 +89,8 @@ export class HomePage {
     this.loading.present();
   }
 
-  checkUserPermission() {
-    const RegisteredEmail = Parse.Object.extend('RegisteredEmail');
-    var query = new Parse.Query(RegisteredEmail);
-    query.equalTo('email', Parse.User.current().get("email"));
-
-    query.first().then(registeredUser => {
-      this.isAdmin = registeredUser.get("isAdmin");
-    });
+  async ionViewWillEnter() {
+    this.isLogged = this.authUserProvider.isLogged();
+    this.isAdmin = await this.authUserProvider.isAdminAsync();
   }
-
-  ionViewWillEnter() {
-    this.checkUserPermission();
-  }
-
 }

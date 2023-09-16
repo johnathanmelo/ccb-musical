@@ -30,6 +30,8 @@ import { EditPermissionPage } from '../pages/permission/edit-permission/edit-per
 
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
+import { AuthUserProvider } from '../providers/auth-user/auth-user-provider';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -85,7 +87,8 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     StatusBar,
     SplashScreen,
     Network,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthUserProvider,
   ]
 })
 export class AppModule {}

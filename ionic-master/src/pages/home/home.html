@@ -15,9 +15,14 @@
     <div class="card-title">Ensaios Locais</div>
   </ion-card>
 
-  <ion-card (click)="onClickLogOut()">
-    <ion-icon name="log-out" class="logout"></ion-icon>
-    <div class="card-title">Sair</div>
+  <ion-card (click)="onClickLogIn()" *ngIf="!isLogged">
+    <ion-icon name="lock" class="login-logout"></ion-icon>
+    <div class="card-title">Entrar na Área Restrita</div>
+  </ion-card>
+
+  <ion-card (click)="onClickLogOut()" *ngIf="isLogged">
+    <ion-icon name="log-out" class="login-logout"></ion-icon>
+    <div class="card-title">Sair da Área Restrita</div>
   </ion-card>
 
 </ion-content>
