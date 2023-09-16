@@ -31,9 +31,10 @@ export class ViewLocalRehearsalPage {
   }
 
   onClickViewLocalRehearsalContact(objectId: any) {
-    if (objectId) {
-      this.navCtrl.push(ViewContactPage, { contactId: objectId });
-    }
+    if (!objectId) return;
+    if (!this.hasPermissionToEdit) return;
+
+    this.navCtrl.push(ViewContactPage, { contactId: objectId });
   }
 
   onClickDeleteLocalRehearsal() {

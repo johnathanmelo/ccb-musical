@@ -17,6 +17,7 @@ export class HomePage {
   loading: any;
   isLogged: boolean = false;
   isAdmin: boolean = false;
+  hasPermissionToEdit: boolean = false;
 
   constructor(
     public navParams: NavParams,
@@ -92,6 +93,7 @@ export class HomePage {
   async ionViewWillEnter() {
     this.isLogged = this.authUserProvider.isLogged();
     this.isAdmin = await this.authUserProvider.isAdminAsync();
+    this.hasPermissionToEdit = await this.authUserProvider.hasPermissionToEditAsync();
   }
 
 }

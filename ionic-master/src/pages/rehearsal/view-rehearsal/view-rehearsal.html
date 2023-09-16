@@ -44,15 +44,15 @@
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.responsible ? rehearsal.responsible.objectId : null)">
       <h3>Atendimento</h3>
       <p>{{ rehearsal.responsible ? rehearsal.responsible.name : '-' }}</p>
-      <span class="icon-msg" *ngIf="rehearsal.responsible" item-end>Clique para detalhes</span>
-      <ion-icon name="arrow-forward" *ngIf="rehearsal.responsible" item-end></ion-icon>
+      <span class="icon-msg" *ngIf="hasPermissionToEdit && rehearsal.responsible" item-end>Clique para detalhes</span>
+      <ion-icon name="arrow-forward" *ngIf="hasPermissionToEdit && rehearsal.responsible" item-end></ion-icon>
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.objectId : null)">
       <h3>Encarregado Regional 1</h3>
       <p>{{ rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.name : '-' }}</p>
-      <span class="icon-msg" *ngIf="rehearsal.musicalResponsible1" item-end>Clique para detalhes</span>
-      <ion-icon name="arrow-forward" *ngIf="rehearsal.musicalResponsible1" item-end></ion-icon>
+      <span class="icon-msg" *ngIf="hasPermissionToEdit && rehearsal.musicalResponsible1" item-end>Clique para detalhes</span>
+      <ion-icon name="arrow-forward" *ngIf="hasPermissionToEdit && rehearsal.musicalResponsible1" item-end></ion-icon>
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible2 ? rehearsal.musicalResponsible2.objectId : null)">

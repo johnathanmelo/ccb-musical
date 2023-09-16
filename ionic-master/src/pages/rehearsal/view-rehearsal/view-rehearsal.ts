@@ -32,9 +32,10 @@ export class ViewRehearsalPage {
   }
 
   onClickViewRehearsalContact(objectId: any) {
-    if (objectId) {
-      this.navCtrl.push(ViewContactPage, { contactId: objectId });
-    }
+    if (!objectId) return;
+    if (!this.hasPermissionToEdit) return;
+
+    this.navCtrl.push(ViewContactPage, { contactId: objectId });
   }
 
   onClickDeleteRehearsal() {

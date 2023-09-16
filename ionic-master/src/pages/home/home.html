@@ -1,10 +1,5 @@
 <ion-content padding>
 
-  <ion-card (click)="openListContactTypePage()">
-    <ion-icon name="contact" class="contacts"></ion-icon>
-    <div class="card-title">Contatos</div>
-  </ion-card>
-
   <ion-card (click)="openListRehearsalPage()">
     <ion-icon name="musical-notes"></ion-icon>
     <div class="card-title">Ensaios Regionais</div>
@@ -15,17 +10,31 @@
     <div class="card-title">Ensaios Locais</div>
   </ion-card>
 
-  <ion-card (click)="onClickLogIn()" *ngIf="!isLogged">
-    <ion-icon name="lock" class="login-logout"></ion-icon>
-    <div class="card-title">Entrar na Área Restrita</div>
+  <ion-card (click)="openListContactTypePage()" *ngIf="hasPermissionToEdit">
+    <ion-icon name="contact" class="contacts"></ion-icon>
+    <div class="card-title">Contatos</div>
   </ion-card>
 
   <ion-card (click)="onClickLogOut()" *ngIf="isLogged">
-    <ion-icon name="log-out" class="login-logout"></ion-icon>
+    <ion-icon name="log-out" class="log-out"></ion-icon>
     <div class="card-title">Sair da Área Restrita</div>
   </ion-card>
 
 </ion-content>
+
+<ion-footer *ngIf="!isLogged">
+
+  <ion-toolbar>
+
+    <ion-buttons text-center>
+      <button ion-button color="dark" (click)="onClickLogIn()">
+        Entrar na Área Restrita
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-footer>
 
 <ion-footer *ngIf="isAdmin">
 

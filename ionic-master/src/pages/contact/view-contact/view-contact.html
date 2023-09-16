@@ -40,20 +40,21 @@
     <ion-item text-wrap (click)="redirectToWhatsapp(contact.phone1)">
       <h3>Telefone 1</h3>
       <p>{{ contact.phoneFormatted1 || '-' }}</p>
-      <span class="icon-msg" *ngIf="contact.phone1 && contact.phone1.length === 11" item-end>Clique para falar</span>
+      <span class="icon-msg" *ngIf="contact.phone1 && contact.phone1.length === 11" item-end>Abrir WhatsApp</span>
       <ion-icon name="logo-whatsapp" *ngIf="contact.phone1 && contact.phone1.length === 11" item-end></ion-icon>
     </ion-item>
 
     <ion-item text-wrap (click)="redirectToWhatsapp(contact.phone2)">
       <h3>Telefone 2</h3>
       <p>{{ contact.phoneFormatted2 || '-' }}</p>
-      <span class="icon-msg" *ngIf="contact.phone2 && contact.phone2.length === 11" item-end>Clique para falar</span>
+      <span class="icon-msg" *ngIf="contact.phone2 && contact.phone2.length === 11" item-end>Abrir WhatsApp</span>
       <ion-icon name="logo-whatsapp" *ngIf="contact.phone2 && contact.phone2.length === 11" item-end></ion-icon>
     </ion-item>
 
     <ion-item text-wrap (click)="copyToClipboard(contact.email)">
       <h3>E-mail</h3>
       <p>{{ contact.email || '-' }}</p>
+      <span class="icon-msg" *ngIf="contact.email" item-end>Copiar Email</span>
       <ion-icon name="copy" *ngIf="contact.email" item-end></ion-icon>
     </ion-item>
 
