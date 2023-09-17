@@ -42,7 +42,7 @@
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.responsible ? rehearsal.responsible.objectId : null)">
-      <h3>Ancião no Atendimento</h3>
+      <h3>Ancião</h3>
 
       <p *ngIf="rehearsal.responsible">{{rehearsal.responsible.name}} ({{rehearsal.responsible.city}})</p>
       <p *ngIf="!rehearsal.responsible">-</p>
@@ -52,7 +52,7 @@
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.objectId : null)">
-      <h3>Encarregado Regional Responsável</h3>
+      <h3>Encarregado Regional</h3>
 
       <p *ngIf="rehearsal.musicalResponsible1">{{rehearsal.musicalResponsible1.name}} ({{rehearsal.musicalResponsible1.city}})</p>
       <p *ngIf="!rehearsal.musicalResponsible1">-</p>

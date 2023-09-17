@@ -38,7 +38,7 @@
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewLocalRehearsalContact(localRehearsal.responsible ? localRehearsal.responsible.objectId : null)">
-      <h3>Encarregado Local Responsável</h3>
+      <h3>Encarregado Local</h3>
 
       <p *ngIf="localRehearsal.responsible">{{localRehearsal.responsible.name}} ({{localRehearsal.responsible.city}})</p>
       <p *ngIf="!localRehearsal.responsible">-</p>
