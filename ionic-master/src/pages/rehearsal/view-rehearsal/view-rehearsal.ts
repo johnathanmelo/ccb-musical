@@ -113,7 +113,6 @@ export class ViewRehearsalPage {
 
     query.include("responsible");
     query.include("musicalResponsible1");
-    query.include("musicalResponsible2");
 
     query.get(rehearsalId).then((object) => {
       this.loading.dismiss();
@@ -126,7 +125,6 @@ export class ViewRehearsalPage {
         time: object.get("dateTime").toLocaleString('pt-BR', { hour: 'numeric', minute: 'numeric' }),
         responsible: this.getSimpleObject(object, 'Contact', 'responsible', ['name', 'city']),
         musicalResponsible1: this.getSimpleObject(object, 'Contact', 'musicalResponsible1', ['name', 'city']),
-        musicalResponsible2: this.getSimpleObject(object, 'Contact', 'musicalResponsible2', ['name', 'city']),
         observation: object.get("observation"),
         done: object.get("dateTime").getTime() < new Date().getTime()
       };

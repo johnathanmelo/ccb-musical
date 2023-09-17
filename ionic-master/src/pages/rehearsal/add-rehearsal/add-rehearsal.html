@@ -64,7 +64,7 @@
 
   <ion-item>
 
-    <ion-label>Atendimento</ion-label>
+    <ion-label>Ancião no Atendimento</ion-label>
 
     <ion-select [(ngModel)]="rehearsal.responsible" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
       <ion-option *ngFor="let anciaoContact of anciaoContacts" [value]="anciaoContact">
@@ -76,19 +76,9 @@
 
   <ion-item>
 
-    <ion-label>Encarregado Regional 1</ion-label>
+    <ion-label>Encarregado Regional Responsável</ion-label>
 
     <ion-select [(ngModel)]="rehearsal.musicalResponsible1" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
-      <ion-option *ngFor="let encarregadoRegContact of encarregadoRegContacts" [value]="encarregadoRegContact">{{encarregadoRegContact.name}} ({{encarregadoRegContact.city}})</ion-option>
-    </ion-select>
-
-  </ion-item>
-
-  <ion-item>
-
-    <ion-label>Encarregado Regional 2</ion-label>
-
-    <ion-select [(ngModel)]="rehearsal.musicalResponsible2" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
       <ion-option *ngFor="let encarregadoRegContact of encarregadoRegContacts" [value]="encarregadoRegContact">{{encarregadoRegContact.name}} ({{encarregadoRegContact.city}})</ion-option>
     </ion-select>
 

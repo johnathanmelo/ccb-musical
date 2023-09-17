@@ -42,7 +42,7 @@
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.responsible ? rehearsal.responsible.objectId : null)">
-      <h3>Atendimento</h3>
+      <h3>Ancião no Atendimento</h3>
 
       <p *ngIf="rehearsal.responsible">{{rehearsal.responsible.name}} ({{rehearsal.responsible.city}})</p>
       <p *ngIf="!rehearsal.responsible">-</p>
@@ -52,20 +52,13 @@
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.objectId : null)">
-      <h3>Encarregado Regional 1</h3>
+      <h3>Encarregado Regional Responsável</h3>
 
       <p *ngIf="rehearsal.musicalResponsible1">{{rehearsal.musicalResponsible1.name}} ({{rehearsal.musicalResponsible1.city}})</p>
       <p *ngIf="!rehearsal.musicalResponsible1">-</p>
 
       <span class="icon-msg" *ngIf="hasPermissionToEdit && rehearsal.musicalResponsible1" item-end>Clique para detalhes</span>
       <ion-icon name="arrow-forward" *ngIf="hasPermissionToEdit && rehearsal.musicalResponsible1" item-end></ion-icon>
-    </ion-item>
-
-    <ion-item text-wrap *ngIf="rehearsal.musicalResponsible2" (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible2.objectId)">
-      <h3>Encarregado Regional 2</h3>
-      <p>{{rehearsal.musicalResponsible2.name}} (rehearsal.musicalResponsible2.city)</p>
-      <span class="icon-msg" item-end>Clique para detalhes</span>
-      <ion-icon name="arrow-forward" item-end></ion-icon>
     </ion-item>
 
     <ion-item text-wrap *ngIf="rehearsal.observation">

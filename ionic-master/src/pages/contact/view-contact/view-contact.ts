@@ -61,19 +61,6 @@ export class ViewContactPage {
     this.navCtrl.push(EditContactPage, { contact: this.contact });
   }
 
-  checkMeetings() {
-    const Meeting = Parse.Object.extend('Meeting');
-    const meetingQuery = new Parse.Query(Meeting);
-    meetingQuery.equalTo('responsible', { '__type': 'Pointer', 'className': 'Contact', 'objectId': this.contact['objectId'] });
-    return meetingQuery.find().then((results) => {
-      if (results.length == 0) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-  }
-
   checkLocalRehearsals() {
     const LocalRehearsal = Parse.Object.extend('LocalRehearsal');
 
@@ -98,10 +85,7 @@ export class ViewContactPage {
     const musicalResponsible1Query = new Parse.Query(Rehearsal);
     musicalResponsible1Query.equalTo('musicalResponsible1', { '__type': 'Pointer', 'className': 'Contact', 'objectId': this.contact['objectId'] });
 
-    const musicalResponsible2Query = new Parse.Query(Rehearsal);
-    musicalResponsible2Query.equalTo('musicalResponsible2', { '__type': 'Pointer', 'className': 'Contact', 'objectId': this.contact['objectId'] });
-
-    const composedQuery = Parse.Query.or(responsibleQuery, musicalResponsible1Query, musicalResponsible2Query);
+    const composedQuery = Parse.Query.or(responsibleQuery, musicalResponsible1Query);
 
     return composedQuery.find().then((results) => {
       if (results.length == 0) {
@@ -115,7 +99,6 @@ export class ViewContactPage {
   canDeleteContact() {
     const promises = [];
 
-    //promises.push(this.checkMeetings());
     promises.push(this.checkRehearsals());
     promises.push(this.checkLocalRehearsals());
 

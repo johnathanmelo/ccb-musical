@@ -38,7 +38,6 @@ export class AddRehearsalPage {
     myNewObject.set('dateTime', new Date(moment(this.rehearsal['date'] + ' ' + this.rehearsal['time']).format()));
     myNewObject.set('responsible', this.rehearsal['responsible']);
     myNewObject.set('musicalResponsible1', this.rehearsal['musicalResponsible1']);
-    myNewObject.set('musicalResponsible2', this.rehearsal['musicalResponsible2']);
     myNewObject.set('observation', this.rehearsal['observation']);
 
     myNewObject.save().then(

@@ -61,7 +61,6 @@ export class EditRehearsalPage {
       object.set('dateTime', new Date(moment(this.rehearsal['date'] + ' ' + this.rehearsal['time']).format()));
       object.set('responsible', this.rehearsal['responsible']);
       object.set('musicalResponsible1', this.rehearsal['musicalResponsible1']);
-      object.set('musicalResponsible2', this.rehearsal['musicalResponsible2']);
       object.set('observation', this.rehearsal['observation']);
 
       object.save().then(
