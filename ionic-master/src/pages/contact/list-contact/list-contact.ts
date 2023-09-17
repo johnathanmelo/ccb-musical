@@ -75,7 +75,6 @@ export class ListContactPage {
       : new Parse.Query(Contact);
 
     const query = Parse.Query.and(functionQuery, textQuery);
-    query.include("function.name");
     query.ascending("name");
     query.addAscending("id");
 

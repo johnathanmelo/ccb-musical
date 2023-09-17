@@ -141,7 +141,7 @@ export class ViewLocalRehearsalPage {
     const LocalRehearsal = Parse.Object.extend("LocalRehearsal");
     const query = new Parse.Query(LocalRehearsal);
 
-    query.include("responsible.name");
+    query.include("responsible");
 
     query.get(localRehearsalId).then((object) => {
       this.loading.dismiss();
@@ -149,7 +149,7 @@ export class ViewLocalRehearsalPage {
         objectId: object.id,
         city: object.get("city"),
         church: object.get("church"),
-        responsible: this.getSimpleObject(object, 'Contact', 'responsible', ['name']),
+        responsible: this.getSimpleObject(object, 'Contact', 'responsible', ['name', 'city']),
         frequency: this.getFrequency(object),
         weekOrder: object.get("weekOrder"),
         weekDay: object.get("weekDay"),

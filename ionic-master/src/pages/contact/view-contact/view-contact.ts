@@ -211,7 +211,7 @@ export class ViewContactPage {
     const Contact = Parse.Object.extend("Contact");
     const query = new Parse.Query(Contact);
 
-    query.include("function.name");
+    query.include("function");
 
     query.get(contactId).then((object) => {
       this.loading.dismiss();

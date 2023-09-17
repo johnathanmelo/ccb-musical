@@ -43,28 +43,34 @@
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.responsible ? rehearsal.responsible.objectId : null)">
       <h3>Atendimento</h3>
-      <p>{{ rehearsal.responsible ? rehearsal.responsible.name : '-' }}</p>
+
+      <p *ngIf="rehearsal.responsible">{{rehearsal.responsible.name}} ({{rehearsal.responsible.city}})</p>
+      <p *ngIf="!rehearsal.responsible">-</p>
+
       <span class="icon-msg" *ngIf="hasPermissionToEdit && rehearsal.responsible" item-end>Clique para detalhes</span>
       <ion-icon name="arrow-forward" *ngIf="hasPermissionToEdit && rehearsal.responsible" item-end></ion-icon>
     </ion-item>
 
     <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.objectId : null)">
       <h3>Encarregado Regional 1</h3>
-      <p>{{ rehearsal.musicalResponsible1 ? rehearsal.musicalResponsible1.name : '-' }}</p>
+
+      <p *ngIf="rehearsal.musicalResponsible1">{{rehearsal.musicalResponsible1.name}} ({{rehearsal.musicalResponsible1.city}})</p>
+      <p *ngIf="!rehearsal.musicalResponsible1">-</p>
+
       <span class="icon-msg" *ngIf="hasPermissionToEdit && rehearsal.musicalResponsible1" item-end>Clique para detalhes</span>
       <ion-icon name="arrow-forward" *ngIf="hasPermissionToEdit && rehearsal.musicalResponsible1" item-end></ion-icon>
     </ion-item>
 
-    <ion-item text-wrap (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible2 ? rehearsal.musicalResponsible2.objectId : null)">
+    <ion-item text-wrap *ngIf="rehearsal.musicalResponsible2" (click)="onClickViewRehearsalContact(rehearsal.musicalResponsible2.objectId)">
       <h3>Encarregado Regional 2</h3>
-      <p>{{ rehearsal.musicalResponsible2 ? rehearsal.musicalResponsible2.name : '-' }}</p>
-      <span class="icon-msg" *ngIf="rehearsal.musicalResponsible2" item-end>Clique para detalhes</span>
-      <ion-icon name="arrow-forward" *ngIf="rehearsal.musicalResponsible2" item-end></ion-icon>
+      <p>{{rehearsal.musicalResponsible2.name}} (rehearsal.musicalResponsible2.city)</p>
+      <span class="icon-msg" item-end>Clique para detalhes</span>
+      <ion-icon name="arrow-forward" item-end></ion-icon>
     </ion-item>
 
-    <ion-item text-wrap>
+    <ion-item text-wrap *ngIf="rehearsal.observation">
       <h3>Observação</h3>
-      <p>{{ rehearsal.observation || '-' }}</p>
+      <p>{{ rehearsal.observation }}</p>
     </ion-item>
 
   </ion-list>

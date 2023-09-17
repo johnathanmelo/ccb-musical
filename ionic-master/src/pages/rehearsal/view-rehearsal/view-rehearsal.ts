@@ -111,11 +111,9 @@ export class ViewRehearsalPage {
     const Rehearsal = Parse.Object.extend("Rehearsal");
     const query = new Parse.Query(Rehearsal);
 
-    query.include("city");
-    query.include("church");
-    query.include("responsible.name");
-    query.include("musicalResponsible1.name");
-    query.include("musicalResponsible2.name");
+    query.include("responsible");
+    query.include("musicalResponsible1");
+    query.include("musicalResponsible2");
 
     query.get(rehearsalId).then((object) => {
       this.loading.dismiss();
@@ -126,9 +124,9 @@ export class ViewRehearsalPage {
         date: moment(object.get("dateTime").toLocaleString('pt-BR'), "DD/MM/YYYY HH:mm").format("YYYY-MM-DD"),
         formattedDate: object.get("dateTime").toLocaleString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
         time: object.get("dateTime").toLocaleString('pt-BR', { hour: 'numeric', minute: 'numeric' }),
-        responsible: this.getSimpleObject(object, 'Contact', 'responsible', ['name']),
-        musicalResponsible1: this.getSimpleObject(object, 'Contact', 'musicalResponsible1', ['name']),
-        musicalResponsible2: this.getSimpleObject(object, 'Contact', 'musicalResponsible2', ['name']),
+        responsible: this.getSimpleObject(object, 'Contact', 'responsible', ['name', 'city']),
+        musicalResponsible1: this.getSimpleObject(object, 'Contact', 'musicalResponsible1', ['name', 'city']),
+        musicalResponsible2: this.getSimpleObject(object, 'Contact', 'musicalResponsible2', ['name', 'city']),
         observation: object.get("observation"),
         done: object.get("dateTime").getTime() < new Date().getTime()
       };

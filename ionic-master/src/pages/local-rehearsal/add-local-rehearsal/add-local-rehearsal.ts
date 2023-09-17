@@ -117,8 +117,6 @@ export class AddLocalRehearsalPage {
     const query = new Parse.Query(Contact);
     query.equalTo("function", this.getContactObjectByFunctionId('32OWVYU7Ja'));
 
-    query.include("function.name");
-
     return query.find().then((results) => {
       var sortedResults = _.orderBy(results, (result) => {
         return [result.get("function").get("name"), _.deburr(result.get("name"))];
@@ -129,7 +127,8 @@ export class AddLocalRehearsalPage {
           '__type': 'Pointer',
           'className': 'Contact',
           'objectId': result.id,
-          name: result.get("name")
+          name: result.get("name"),
+          city: result.get("city"),
         };
       });
     }, (error) => {

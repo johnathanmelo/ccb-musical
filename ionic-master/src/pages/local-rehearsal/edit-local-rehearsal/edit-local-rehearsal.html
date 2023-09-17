@@ -110,7 +110,7 @@
 
       <ion-select [(ngModel)]="localRehearsal.responsible" [compareWith]="compareFn" okText="OK" cancelText="Cancelar">
         <ion-option *ngFor="let encarregadoLocalContact of encarregadoLocalContacts" [value]="encarregadoLocalContact">
-          {{encarregadoLocalContact.name}}
+          {{encarregadoLocalContact.name}} ({{encarregadoLocalContact.city}})
         </ion-option>
       </ion-select>
 
