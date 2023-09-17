@@ -60,12 +60,24 @@ export class EditLocalRehearsalPage {
       object.set('city', this.localRehearsal['city']);
       object.set('church', this.localRehearsal['church']);
       object.set('responsible', this.localRehearsal['responsible']);
-      object.set('weekDay', this.localRehearsal['weekDay'] && this.localRehearsal['weekDay']['value']);
-      object.set('weekOrder', this.localRehearsal['weekOrder'] && this.localRehearsal['weekOrder']['objectId']);
       object.set('monthlyFrequency', this.localRehearsal['monthlyFrequency']['objectId']);
-      object.set('specificMonths', this.localRehearsal['specificMonths']);
       object.set('time', new Date(moment('1970-01-01 ' + this.localRehearsal['time']).format()));
-      object.set('observation', this.localRehearsal['observation']);
+
+      this.localRehearsal['weekDay']
+        ? object.set('weekDay', this.localRehearsal['weekDay']['value'])
+        : object.unset('weekDay');
+
+      this.localRehearsal['weekOrder']
+        ? object.set('weekOrder', this.localRehearsal['weekOrder']['objectId'])
+        : object.unset('weekOrder');
+
+      this.localRehearsal['specificMonths']
+        ? object.set('specificMonths', this.localRehearsal['specificMonths'])
+        : object.unset('specificMonths');
+      
+      this.localRehearsal['observation']
+        ? object.set('observation', this.localRehearsal['observation'])
+        : object.unset('observation');
 
       object.save().then(
         () => {
