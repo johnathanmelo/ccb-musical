@@ -148,6 +148,7 @@ export class EditPermissionPage {
 
   ionViewWillEnter() {
     this.registeredEmail = this.navParams.get('registeredEmail');
+    this.registeredEmail['permissionToEdit'] = true;
 
     this.isMyPermission = Parse.User.current().get("email") === this.registeredEmail['email'];
   }

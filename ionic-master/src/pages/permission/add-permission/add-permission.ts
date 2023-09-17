@@ -73,7 +73,7 @@ export class AddPermissionPage {
   }
 
   ionViewWillEnter() {
-    this.registeredEmail['permissionToEdit'] = false;
+    this.registeredEmail['permissionToEdit'] = true;
     this.registeredEmail['isAdmin'] = false;
   }
 
