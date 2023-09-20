@@ -23,8 +23,8 @@
       </ion-item>
 
       <ion-item text-wrap *ngFor="let registeredEmail of registeredEmails" (click)="editPermission(registeredEmail)">
-        <h2>{{ registeredEmail.email }}</h2>
-        <h3 class="editor" *ngIf="registeredEmail.permissionToEdit">Permissão para editar</h3>
+        <h2>{{ registeredEmail.name }}</h2>
+        <h3>{{ registeredEmail.email }}</h3>
         <button *ngIf="registeredEmail.isAdmin" ion-button clear item-end>Administrador</button>
       </ion-item>
 

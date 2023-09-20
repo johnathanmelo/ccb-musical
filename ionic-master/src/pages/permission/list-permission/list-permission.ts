@@ -54,7 +54,8 @@ export class ListPermissionPage {
 
     const query = new Parse.Query(RegisteredEmail);
     query.matches("email", this.textFilter, "i");
-    query.ascending("email");
+    query.descending("isAdmin");
+    query.addAscending("name");
     query.addAscending("id");
 
     query.limit(12);
@@ -64,8 +65,8 @@ export class ListPermissionPage {
       var loadedRegisteredEmails = results.map((result) => {
         return {
           'objectId': result.id,
+          name: result.get("name"),
           email: result.get("email"),
-          permissionToEdit: result.get("permissionToEdit"),
           isAdmin: result.get("isAdmin"),
         };
       });

@@ -37,14 +37,14 @@
       <p>{{ localRehearsal.time }}</p>
     </ion-item>
 
-    <ion-item text-wrap (click)="onClickViewLocalRehearsalContact(localRehearsal.responsible ? localRehearsal.responsible.objectId : null)">
+    <ion-item text-wrap *ngIf="hasPermissionToEdit" (click)="onClickViewLocalRehearsalContact(localRehearsal.responsible ? localRehearsal.responsible.objectId : null)">
       <h3>Encarregado Local</h3>
 
       <p *ngIf="localRehearsal.responsible">{{localRehearsal.responsible.name}} ({{localRehearsal.responsible.city}})</p>
       <p *ngIf="!localRehearsal.responsible">-</p>
 
-      <span class="icon-msg" *ngIf="hasPermissionToEdit && localRehearsal.responsible" item-end>Clique para detalhes</span>
-      <ion-icon name="arrow-forward" *ngIf="hasPermissionToEdit && localRehearsal.responsible" item-end></ion-icon>
+      <span class="icon-msg" *ngIf="localRehearsal.responsible" item-end>Clique para detalhes</span>
+      <ion-icon name="arrow-forward" *ngIf="localRehearsal.responsible" item-end></ion-icon>
     </ion-item>
 
   </ion-list>
